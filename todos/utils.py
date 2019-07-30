@@ -10,15 +10,21 @@ def parse_date(date_str):
     ]
     if date_str is None:
         return date_str
+
     for format in formats:
         try:
             return datetime.strptime(date_str, format)
         except ValueError:
-            pass
+            raise InvalidTaskDueDateException()
 
 
 def parse_int(value):
-    pass
+
+    try:
+        return int(value)
+
+    except ValueError:
+        return None
 
 
 def serialize(tasks):
